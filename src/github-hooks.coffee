@@ -32,10 +32,6 @@ hook_data =
     'pull_request'
   ]
 
-console.log()
-console.dir hook_data
-console.log()
-
 module.exports = (robot) ->
   github = require('githubot')(robot)
 
@@ -45,7 +41,6 @@ module.exports = (robot) ->
     nwo   = "#{owner}/#{name}"
 
     github.request 'POST', "repos/#{nwo}/hooks", hook_data, (hook) ->
-      console.dir hook
       robot.brain.data.repo_hooks or= {}
       robot.brain.data.repo_hooks[nwo] or= {}
       robot.brain.data.repo_hooks[nwo]['campfire'] = hook.id
